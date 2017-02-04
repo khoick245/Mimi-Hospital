@@ -1,0 +1,225 @@
+CREATE TABLE cecs323m24.HospitalPerson
+(
+  p_id VARCHAR(10) NOT NULL,
+  p_fname VARCHAR(20) NOT NULL,
+  p_lname VARCHAR(20) NOT NULL,
+  p_bday    DATE,
+  PRIMARY KEY (p_id)
+);
+CREATE TABLE cecs323m24.Phonenumber
+  (
+  p_id    VARCHAR(10)     NOT NULL,
+  type VARCHAR(20) NOT NULL,
+  phone_number VARCHAR(20) NOT NULL,
+PRIMARY KEY (p_id, type, phone_number),
+Foreign Key (p_id) REFERENCES HospitalPerson(p_id)
+  );
+
+CREATE TABLE cecs323m24.Address
+  (
+  p_id    VARCHAR(10)     NOT NULL,
+  addresstype VARCHAR(20) NOT NULL,
+  location VARCHAR(40) NOT NULL,
+PRIMARY KEY (p_id, addresstype, location),
+Foreign Key (p_id) REFERENCES HospitalPerson(p_id) );
+
+CREATE TABLE cecs323m24.Employees
+(
+  emp_id VARCHAR(10) NOT NULL,
+  hired_date    DATE,
+  PRIMARY KEY (emp_id),
+Foreign Key (emp_id) REFERENCES HospitalPerson(p_id));
+
+CREATE TABLE cecs323m24.Volunteer 
+(
+  volunteer_id   VARCHAR(10)      NOT NULL,
+  experience VARCHAR(40) NOT NULL,
+PRIMARY KEY (volunteer_id),
+Foreign Key (volunteer_id) REFERENCES HospitalPerson(p_id));
+
+CREATE TABLE cecs323m24.Student
+(
+  student_id  VARCHAR(10) NOT NULL,
+  school VARCHAR(40) NOT NULL,
+ PRIMARY KEY (student_id),
+Foreign Key (student_id) REFERENCES Volunteer(volunteer_id)
+);
+CREATE TABLE cecs323m24.Retiree
+(
+  retiree_id  VARCHAR(10) NOT NULL,
+  retire_date    DATE,
+  PRIMARY KEY (retiree_id),
+Foreign Key (retiree_id ) REFERENCES Volunteer(volunteer_id)
+);
+CREATE TABLE cecs323m24.Physician
+(
+  physician_id    VARCHAR(10)      NOT NULL,
+  speciality VARCHAR(40) NOT NULL,
+  pagernumber   CHAR(4)     NOT NULL,
+  PRIMARY KEY (physician_id),
+Foreign Key (physician_id ) REFERENCES HospitalPerson(p_id)
+);
+
+CREATE TABLE cecs323m24.Referral
+(
+  FamilyDoctocName  VARCHAR(10) NOT NULL,
+  date_refer Date NOT NULL,
+  reason VARCHAR(20),
+  PRIMARY KEY (FamilyDoctocName)
+);
+CREATE TABLE cecs323m24.Patient
+(
+  patient_id    VARCHAR(10)    NOT NULL,
+  contact_date    DATE,
+  referral_name  VARCHAR(10) NOT NULL,
+ PRIMARY KEY (patient_id),
+Foreign Key (patient_id) REFERENCES HospitalPerson(p_id),
+Foreign Key (referral_name) REFERENCES Referral (FamilyDoctocName )
+);
+CREATE TABLE cecs323m24.Outpatient
+(
+  Outpatient_id  VARCHAR(10) NOT NULL,
+  detail VARCHAR(40) NOT NULL,
+  PRIMARY KEY (Outpatient_id),
+Foreign Key (Outpatient_id) REFERENCES Patient(patient_id)
+);
+
+CREATE TABLE cecs323m24.Care_Center
+(
+  cc_id    VARCHAR(10)     NOT NULL,
+  cc_name VARCHAR(20) NOT NULL,
+  cc_location VARCHAR(40) NOT NULL,
+  CONSTRAINT pk_Care_Center PRIMARY KEY (cc_id)
+);
+
+CREATE TABLE cecs323m24.Bed
+(
+  bed_id    VARCHAR(10)     NOT NULL,
+  bed_number    VARCHAR(10)     NOT NULL,
+  bed_room VARCHAR(10) NOT NULL,
+  cc_id    VARCHAR(10)     NOT NULL,
+  occupied boolean,
+  PRIMARY KEY (bed_id),
+ Foreign Key (cc_id) REFERENCES Care_Center(cc_id)
+);
+
+CREATE TABLE cecs323m24.Resident
+(
+  resident_id  VARCHAR(10) NOT NULL,
+  admitted_date date NOT NULL,
+  bed_id VARCHAR(10)     NOT NULL,
+  PRIMARY KEY (Resident_id, bed_id),
+Foreign Key (resident_id) REFERENCES Patient(patient_id),
+Foreign Key (bed_id) REFERENCES Bed(bed_id)
+);
+CREATE TABLE cecs323m24.Nurse
+(
+  nurse_id    VARCHAR(10)     NOT NULL,
+  hired_date    DATE,
+  cc_id    VARCHAR(10)     NOT NULL,
+ PRIMARY KEY (nurse_id),
+Foreign Key (nurse_id) REFERENCES Employees(emp_id),
+Foreign Key (cc_id) REFERENCES Care_Center(cc_id)
+);
+
+
+CREATE TABLE cecs323m24.RN
+(
+  RN_Nurse_id    VARCHAR(10)     NOT NULL,
+  certificate VARCHAR(40) NOT NULL,
+  Incharge_Status BOOLEAN,
+  PRIMARY KEY (RN_Nurse_id),
+Foreign Key (RN_Nurse_id) REFERENCES Nurse(nurse_id)
+);
+CREATE TABLE cecs323m24.Technician
+(
+  tech_id    VARCHAR(10)     NOT NULL,
+  degree VARCHAR(40) NOT NULL,
+  PRIMARY KEY (tech_id),
+Foreign Key (tech_id) REFERENCES Employees(emp_id)
+);
+CREATE TABLE cecs323m24.Laboratory
+(
+  lab_id    VARCHAR(10)    NOT NULL,
+  lab_name  VARCHAR(40) NOT NULL,
+  lab_location VARCHAR(40) NOT NULL,
+ PRIMARY KEY (lab_id)
+);
+CREATE TABLE cecs323m24.Lab_Tech
+(
+  lab_id  VARCHAR(10)     NOT NULL,
+  tech_id  VARCHAR(10) NOT NULL,
+  workedhours VARCHAR(20) NOT NULL,
+ PRIMARY KEY (tech_id,lab_id),
+Foreign Key (tech_id) REFERENCES Technician(tech_id),
+Foreign Key (lab_id) REFERENCES Laboratory(lab_id)
+);
+
+CREATE TABLE cecs323m24.Job
+(
+  job_id    VARCHAR(10)    NOT NULL,
+  job_name  VARCHAR(40) NOT NULL,
+  job_description VARCHAR(1000) NOT NULL,
+ PRIMARY KEY (job_id)
+);
+
+CREATE TABLE cecs323m24.Staff
+(
+  staff_id VARCHAR(10) NOT NULL,
+  job_id VARCHAR(10) NOT NULL,
+  PRIMARY KEY (staff_id),
+Foreign Key (staff_id) REFERENCES Employees(emp_id),
+Foreign Key (job_id) REFERENCES Job(job_id)
+);
+
+CREATE TABLE cecs323m24.Administration
+(
+  admin_id  VARCHAR(10) NOT NULL,
+  position VARCHAR(20) NOT NULL,
+  PRIMARY KEY (admin_id),
+Foreign Key (admin_id) REFERENCES Staff(staff_id)
+);
+
+CREATE TABLE cecs323m24.Security
+(
+  sec_id  VARCHAR(10) NOT NULL,
+  weapontype VARCHAR(20) NOT NULL,
+  PRIMARY KEY (sec_id),
+Foreign Key (sec_id) REFERENCES Staff(staff_id)
+);
+
+CREATE TABLE cecs323m24.Skill
+(
+  skill_id    VARCHAR(10)    NOT NULL,
+  skill_name  VARCHAR(40) NOT NULL,
+  skill_description VARCHAR(1000) NOT NULL,
+ PRIMARY KEY (skill_id)
+);
+
+CREATE TABLE cecs323m24.Volunteer_Skill
+(
+  volunteer_id  VARCHAR(10)     NOT NULL,
+  skill_id  VARCHAR(10) NOT NULL,
+ PRIMARY KEY (volunteer_id,skill_id),
+Foreign Key (volunteer_id) REFERENCES Volunteer(volunteer_id),
+Foreign Key (skill_id) REFERENCES Skill(skill_id)
+);
+CREATE TABLE cecs323m24.Tech_Skill
+(
+  tech_id  VARCHAR(10)     NOT NULL,
+  skill_id  VARCHAR(10) NOT NULL,
+ PRIMARY KEY (tech_id,skill_id),
+Foreign Key (tech_id) REFERENCES Technician(tech_id),
+Foreign Key (skill_id) REFERENCES Skill(skill_id)
+);
+CREATE TABLE cecs323m24.Visit_Detail
+(
+  physician_id  VARCHAR(10) NOT NULL,
+  patient_id VARCHAR(10) NOT NULL,
+  date_visit DATE,
+  comment VARCHAR(1000) NOT NULL,
+  responsibility BOOLEAN,
+  PRIMARY KEY (physician_id,patient_id, date_visit),
+Foreign Key (physician_id) REFERENCES Physician(physician_id),
+Foreign Key (patient_id) REFERENCES Patient(patient_id)
+);

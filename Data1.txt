@@ -1,0 +1,206 @@
+----HospitalPerson----
+INSERT INTO cecs323m24.HospitalPerson VALUES('1289', 'Jack', 'Marbury', '1978-02-21'); --physician
+INSERT INTO cecs323m24.HospitalPerson VALUES('1256', 'Bruce', 'Le', '1969-03-12'); --physician
+INSERT INTO cecs323m24.HospitalPerson VALUES('1243', 'Ashley', 'Nguyen', '1988-11-22'); --physician
+INSERT INTO cecs323m24.HospitalPerson VALUES('1212', 'Marissa', 'Hill', '1991-03-24'); --physician
+INSERT INTO cecs323m24.HospitalPerson VALUES('1232', 'Freddy', 'Pates', '1986-12-24'); --physician
+INSERT INTO cecs323m24.HospitalPerson VALUES('1277', 'John', 'Wu', '1967-01-11'); --nurse
+INSERT INTO cecs323m24.HospitalPerson VALUES('1123', 'Kevin', 'Vo', '1994-12-14'); --nurse
+INSERT INTO cecs323m24.HospitalPerson VALUES('1147', 'Lynn', 'Takashi', '1992-09-19'); --nurse
+INSERT INTO cecs323m24.HospitalPerson VALUES('1511', 'Elizabeth', 'Pitt', '1993-10-08'); --nurse
+INSERT INTO cecs323m24.HospitalPerson VALUES('1547', 'Bryan', 'Huang', '1998-02-21'); --staff
+INSERT INTO cecs323m24.HospitalPerson VALUES('1491', 'Alex', 'Do', '1949-03-12'); --staff
+INSERT INTO cecs323m24.HospitalPerson VALUES('1228', 'Jeniffer', 'Nguyen', '1989-11-22'); --staff
+INSERT INTO cecs323m24.HospitalPerson VALUES('1237', 'Lucas', 'Leva', '1991-03-24'); --staff
+INSERT INTO cecs323m24.HospitalPerson VALUES('1327', 'Jenny', 'Nove', '1976-12-24'); --technician
+INSERT INTO cecs323m24.HospitalPerson VALUES('1625', 'David', 'Le', '1967-01-11'); --technician
+INSERT INTO cecs323m24.HospitalPerson VALUES('1199', 'Henry', 'Nguyen', '1967-12-14'); --student
+INSERT INTO cecs323m24.HospitalPerson VALUES('1194', 'Alex', 'Takashi', '1979-09-19'); --student
+INSERT INTO cecs323m24.HospitalPerson VALUES('1983', 'Daniel', 'Pitt', '1943-10-08'); --retiree
+INSERT INTO cecs323m24.HospitalPerson VALUES('1135', 'Bryan', 'Truong', '1977-11-12'); --retiree
+INSERT INTO cecs323m24.HospitalPerson VALUES('2213', 'Kevin', 'Durant', '1998-02-21'); --patient
+INSERT INTO cecs323m24.HospitalPerson VALUES('2216', 'Kobe', 'Bryan', '1989-03-12'); --patient
+INSERT INTO cecs323m24.HospitalPerson VALUES('2257', 'Adam', 'Jonson', '1998-11-22'); --patient
+INSERT INTO cecs323m24.HospitalPerson VALUES('2281', 'Lionel', 'Messi', '1981-03-24'); --patient
+INSERT INTO cecs323m24.HospitalPerson VALUES('2287', 'Luck', 'Shaw', '1996-12-24'); --patient
+
+
+----PhoneNumber----
+INSERT INTO cecs323m24.Phonenumber VALUES('1289', 'Home', '714-421-1021'); 
+INSERT INTO cecs323m24.Phonenumber VALUES('1256', 'Cell', '714-432-4141'); 
+INSERT INTO cecs323m24.Phonenumber VALUES('1243', 'Home', '714-421-1023'); 
+INSERT INTO cecs323m24.Phonenumber VALUES('1243', 'Cell', '714-432-4142'); 
+INSERT INTO cecs323m24.Phonenumber VALUES('1232', 'Home', '714-421-1021'); 
+INSERT INTO cecs323m24.Phonenumber VALUES('1277', 'Cell', '714-432-4177'); 
+INSERT INTO cecs323m24.Phonenumber VALUES('1123', 'Home', '714-421-1027'); 
+INSERT INTO cecs323m24.Phonenumber VALUES('1147', 'Home', '714-432-4144'); 
+INSERT INTO cecs323m24.Phonenumber VALUES('1511', 'Cell', '714-421-1029'); 
+INSERT INTO cecs323m24.Phonenumber VALUES('1547', 'Home', '714-432-4133'); 
+INSERT INTO cecs323m24.Phonenumber VALUES('1228', 'Home', '714-421-1021'); 
+INSERT INTO cecs323m24.Phonenumber VALUES('1237', 'Cell', '714-432-4141'); 
+INSERT INTO cecs323m24.Phonenumber VALUES('1327', 'Home', '714-421-1023'); 
+INSERT INTO cecs323m24.Phonenumber VALUES('1199', 'Cell', '714-432-4142'); 
+INSERT INTO cecs323m24.Phonenumber VALUES('1194', 'Home', '714-421-1021'); 
+INSERT INTO cecs323m24.Phonenumber VALUES('1983', 'Cell', '714-432-4177'); 
+INSERT INTO cecs323m24.Phonenumber VALUES('1135', 'Home', '714-421-1027'); 
+
+
+
+----Address----
+INSERT INTO cecs323m24.Address VALUES('1289', 'Home', 'Irvine, CA 92697') ;
+INSERT INTO cecs323m24.Address VALUES('1256', 'Apartment', 'Anaheim, CA 92697');
+INSERT INTO cecs323m24.Address VALUES('1256', 'Home', 'Irvine, CA 92697') ;
+INSERT INTO cecs323m24.Address VALUES('1243', 'Home', 'Irvine, CA 92697') ;
+INSERT INTO cecs323m24.Address VALUES('1243', 'Apartment', 'Anaheim, CA 92697'); 
+INSERT INTO cecs323m24.Address VALUES('1232', 'Home', 'Irvine, CA 92697') ;
+INSERT INTO cecs323m24.Address VALUES('1277', 'Apartment', 'Long beach, CA 92697') ;
+INSERT INTO cecs323m24.Address VALUES('1123', 'Home', 'Irvine, CA 92697') ;
+INSERT INTO cecs323m24.Address VALUES('1212', 'Home', 'LA, CA 92697') ;
+INSERT INTO cecs323m24.Address VALUES('1147', 'Apartment', 'Irvine, CA 92697') ;
+INSERT INTO cecs323m24.Address VALUES('1511', 'Home', 'Laguna, CA 92697') ;
+INSERT INTO cecs323m24.Address VALUES('1547', 'Home', 'Irvine, CA 92697') ;
+INSERT INTO cecs323m24.Address VALUES('1228', 'Home', 'Cerritos, CA 92697') ;
+INSERT INTO cecs323m24.Address VALUES('1237', 'Apartment', 'Anaheim, CA 92697');
+INSERT INTO cecs323m24.Address VALUES('1327', 'Home', 'Irvine, CA 92697') ;
+INSERT INTO cecs323m24.Address VALUES('1194', 'Home', 'San Diego, CA 92697') ;
+INSERT INTO cecs323m24.Address VALUES('1983', 'Apartment', 'Anaheim, CA 92697'); 
+INSERT INTO cecs323m24.Address VALUES('1135', 'Apartment', 'Long beach, CA 92697') ;
+
+----Employee----
+--Nurse, staff, or technician
+INSERT INTO cecs323m24.EMPLOYEES VALUES('1289', '2014-01-31'); 
+INSERT INTO cecs323m24.EMPLOYEES VALUES('1256', '2010-09-14'); 
+INSERT INTO cecs323m24.EMPLOYEES VALUES('1243', '2014-08-09'); 
+INSERT INTO cecs323m24.EMPLOYEES VALUES('1212', '2013-06-11'); 
+INSERT INTO cecs323m24.EMPLOYEES VALUES('1232', '2014-05-21'); 
+INSERT INTO cecs323m24.EMPLOYEES VALUES('1277', '2014-05-21'); 
+INSERT INTO cecs323m24.EMPLOYEES VALUES('1123', '2013-06-11'); 
+INSERT INTO cecs323m24.EMPLOYEES VALUES('1147', '2014-05-21'); 
+INSERT INTO cecs323m24.EMPLOYEES VALUES('1511', '2014-05-21'); 
+INSERT INTO cecs323m24.EMPLOYEES VALUES('1547', '2013-06-11'); 
+INSERT INTO cecs323m24.EMPLOYEES VALUES('1491', '2014-05-21'); 
+INSERT INTO cecs323m24.EMPLOYEES VALUES('1228', '2014-05-21'); 
+INSERT INTO cecs323m24.EMPLOYEES VALUES('1327', '2013-06-11'); 
+INSERT INTO cecs323m24.EMPLOYEES VALUES('1625', '2013-06-11'); 
+
+----Volunteer----
+INSERT INTO cecs323m24.Volunteer VALUES('1199', 'Technical relations'); 
+INSERT INTO cecs323m24.Volunteer VALUES('1194', 'Patient relations'); 
+INSERT INTO cecs323m24.Volunteer VALUES('1983', 'Technical relations'); 
+INSERT INTO cecs323m24.Volunteer VALUES('1135', 'Patient relations'); 
+INSERT INTO cecs323m24.Volunteer VALUES('2213', 'Patient relations'); 
+
+----Physician----
+INSERT INTO cecs323m24.Physician VALUES('1289', 'Family Medicine', '22'); 
+INSERT INTO cecs323m24.Physician VALUES('1256', 'Neurology', '11'); 
+INSERT INTO cecs323m24.Physician VALUES('1243', 'Family Medicine', '22'); 
+INSERT INTO cecs323m24.Physician VALUES('1212', 'Neurology', '11'); 
+INSERT INTO cecs323m24.Physician VALUES('1232', 'Family Medicine', '22'); 
+
+----Referral----
+INSERT INTO cecs323m24.Referral VALUES('A&T', '2014-01-13', 'Medical Needs');
+INSERT INTO cecs323m24.Referral VALUES('ABC', '2014-02-13', 'Medical Needs');
+
+----Patient----
+INSERT INTO cecs323m24.Patient VALUES('2213', '2014-01-17', 'A&T' ); 
+INSERT INTO cecs323m24.Patient VALUES('2216', '2014-01-19', 'A&T' );
+INSERT INTO cecs323m24.Patient VALUES('2257', '2014-02-15', 'ABC' );
+INSERT INTO cecs323m24.Patient VALUES('2281', '2014-02-19', 'ABC' );
+INSERT INTO cecs323m24.Patient VALUES('2287', '2014-02-22', 'ABC' );
+
+----Care Center----
+INSERT INTO cecs323m24.Care_Center VALUES('cc292', 'Orange Center', 'Fountain Valley, CA 92708');
+INSERT INTO cecs323m24.Care_Center VALUES('cc42', 'Joseph Center', 'Irvine, CA 92602');
+
+----Nurse----
+INSERT INTO cecs323m24.Nurse VALUES('1277', '2014-01-31', 'cc292'); 
+INSERT INTO cecs323m24.Nurse VALUES('1123', '2010-09-14', 'cc42'); 
+INSERT INTO cecs323m24.Nurse VALUES('1147', '2014-01-31', 'cc292'); 
+INSERT INTO cecs323m24.Nurse VALUES('1511', '2010-09-14', 'cc42'); 
+
+----RN----
+INSERT INTO cecs323m24.RN VALUES('1123', 'RN Certifcate', true); 
+INSERT INTO cecs323m24.RN VALUES('1147', 'RN Certifcate', true); 
+INSERT INTO cecs323m24.RN VALUES('1277', 'RN Certifcate', false); 
+
+----Bed----
+INSERT INTO cecs323m24.Bed VALUES('b7812', '21', 'R12', 'cc292', true);
+INSERT INTO cecs323m24.Bed VALUES('b7814', '11', 'R10', 'cc292', true);
+INSERT INTO cecs323m24.Bed VALUES('b7818', '02', 'R19', 'cc42', false);
+INSERT INTO cecs323m24.Bed VALUES('b7811', '10', 'R13', 'cc42', false);
+
+
+----Technician----
+INSERT INTO cecs323m24.Technician VALUES ('1327', 'Clinical Laboratory Technology'); 
+INSERT INTO cecs323m24.Technician VALUES ('1625', 'Phlebotomy'); 
+
+----Laboratory----
+INSERT INTO cecs323m24.Laboratory VALUES ('L9898', 'Orange Laboratory', 'Fountain Valley, CA 92708');
+INSERT INTO cecs323m24.Laboratory VALUES ('L9892', 'CA Laboratory', 'Fountain Valley, CA 92708');
+INSERT INTO cecs323m24.Laboratory VALUES ('L9896', 'LA Laboratory', 'Fountain Valley, CA 92708');
+
+----Lab_Tech----
+INSERT INTO cecs323m24.Lab_Tech VALUES ('L9898', '1327', '8AM-5PM');
+INSERT INTO cecs323m24.Lab_Tech VALUES ('L9892', '1327', '5PM-2AM');
+INSERT INTO cecs323m24.Lab_Tech VALUES ('L9896', '1625', '8AM-5PM');
+
+----Student----
+INSERT INTO cecs323m24.Student VALUES ('1199', 'University of California, Irvine'); 
+INSERT INTO cecs323m24.Student VALUES ('1194', 'University of California, Irvine'); 
+
+----Retiree----
+INSERT INTO cecs323m24.Retiree VALUES ('1983', '2016-02-12');
+INSERT INTO cecs323m24.Retiree VALUES ('1135', '2016-02-12');
+
+---Job----
+insert into cecs323m24.job values('j01', 'General Management', 'Monitor everything');
+insert into cecs323m24.job values('j02', 'Security', 'Secure everything');
+
+----Staff----
+INSERT INTO cecs323m24.Staff VALUES ('1547', 'j01'); 
+INSERT INTO cecs323m24.Staff VALUES ('1491', 'j02'); 
+INSERT INTO cecs323m24.Staff VALUES ('1228', 'j01'); 
+INSERT INTO cecs323m24.Staff VALUES ('1327', 'j02'); 
+
+----Administration----
+INSERT INTO Administration VALUES ('1547', 'Administration') ;
+INSERT INTO Administration VALUES ('1228', 'Administration') ;
+
+----Security----
+INSERT INTO cecs323m24.Security VALUES ('1491', 'Revolver'); 
+INSERT INTO cecs323m24.Security VALUES ('1327', 'Revolver'); 
+
+----Outpatient----
+INSERT INTO cecs323m24.Outpatient VALUES ('2213', 'Headache'); 
+INSERT INTO cecs323m24.Outpatient VALUES ('2216', 'Foot issue'); 
+INSERT INTO cecs323m24.Outpatient VALUES ('2257', 'Accident'); 
+
+----Resident----
+INSERT INTO cecs323m24.Resident VALUES('2281','2016-06-21', 'b7812'); 
+INSERT INTO cecs323m24.Resident VALUES('2287', '2016-06-21', 'b7818'); 
+
+----Visit_Detail----
+INSERT INTO cecs323m24.Visit_Detail VALUES('1289', '2213', '2016-02-12', 'Check head', true); 
+INSERT INTO cecs323m24.Visit_Detail VALUES('1289', '2216', '2016-02-12', 'Check foot', true); 
+INSERT INTO cecs323m24.Visit_Detail VALUES('1289', '2281', '2016-02-12', 'Check foot', false);
+INSERT INTO cecs323m24.Visit_Detail VALUES('1289', '2287', '2016-02-12', 'Check foot', false);
+INSERT INTO cecs323m24.Visit_Detail VALUES('1243', '2287', '2016-02-12', 'Check foot', false); 
+INSERT INTO cecs323m24.Visit_Detail VALUES('1232', '2257', '2016-02-12', 'Check foot', false);
+
+--- Skill ---
+insert into cecs323m24.skill values('sk01', 'Massage', 'Massage body');
+insert into cecs323m24.skill values('sk02', 'Take blood', 'takeing blood');
+insert into cecs323m24.skill values('sk03', 'Cleck', 'Office job');
+insert into cecs323m24.skill values('sk04', 'Answer phone', 'Answer phone call');
+insert into cecs323m24.skill values('sk05', 'Clean up', 'Clean up equiment');
+
+--- VolunteerSkill ---
+insert into cecs323m24.Volunteer_Skill values('1199','sk01');
+insert into cecs323m24.Volunteer_Skill values('1199','sk02');
+insert into cecs323m24.Volunteer_Skill values('1194','sk04');
+
+--- TechnicanSkill---
+insert into cecs323m24.Tech_Skill values('1327', 'sk04');
+insert into cecs323m24.Tech_Skill values('1625', 'sk05');
+insert into cecs323m24.Tech_Skill values('1625', 'sk02');
+

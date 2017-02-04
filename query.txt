@@ -1,0 +1,201 @@
+--1. Employees-Hired: This view returns the First Name, Last Name, 
+--and Date Hired of all Hospital Employees.
+create view employees_hired as
+select P_FNAME, P_LNAME, HIRED_DATE from HOSPITALPERSON natural join EMPLOYEES;
+
+--2. NursesInCharge: This view returns the name of 
+--the Nurse in Charge for each Care Center along with the phone number of the Nurse.
+create view NurseInCharge as
+select P_FNAME, P_LNAME, PHONE_NUMBER, CC_NAME from PHONENUMBER p inner join HOSPITALPERSON h
+        on p.P_ID = h.P_ID inner join EMPLOYEES e on e.EMP_ID = h.P_ID 
+                            inner join NURSE n on n.NURSE_ID = e.EMP_ID
+                            inner join RN r on r.RN_NURSE_ID = n.NURSE_ID
+                            inner join CARE_CENTER c on c.CC_ID = n.CC_ID
+where r.INCHARGE_STATUS = true;
+
+--3. GoodTechnician: This view returns all the Technicians how have at least one skill.
+create view GoodTechnician as
+select distinct h.P_FNAME, h.P_LNAME from HOSPITALPERSON h inner join EMPLOYEES e
+    on h.P_ID = e.EMP_ID inner join TECHNICIAN t on t.TECH_ID = e.EMP_ID
+                        inner join TECH_SKILL ts on ts.TECH_ID = t.TECH_ID
+where t.TECH_ID in 
+    (select TECH_ID from TECH_SKILL
+        group by TECH_ID
+        having count(SKILL_ID) > 1);
+
+--4. CareCenter-Beds: This view returns the name for each Care Center
+-- along with the number of beds that are assigned to patients (occupied beds), 
+--the number of beds not assigned to patients (free beds), and the total number of beds.
+SELECT c.CC_NAME, count(case when OCCUPIED = true then 1 end) as occupied,
+     count(case when OCCUPIED = false then 0 end) as unoccupied,
+     count(BED_ID) as total
+from CARE_CENTER c inner join BED b on c.CC_ID = b.CC_ID
+group by c.CC_NAME;
+
+
+-- 5.OutPatientsNotVisited: This view returns all OutPatients 
+--who have not been visited by a Physician yet
+create view OutPatientsNotVisited as
+select h.P_FNAME, h.P_LNAME from HOSPITALPERSON h inner join PATIENT p
+    on h.P_ID = p.PATIENT_ID inner join OUTPATIENT o on o.OUTPATIENT_ID = p.PATIENT_ID
+where o.OUTPATIENT_ID not in (select PATIENT_ID from VISIT_DETAIL);
+
+
+-- 1
+select h.P_FNAME, h.P_LNAME, j.JOB_NAME from HOSPITALPERSON h inner join EMPLOYEES e on h.P_ID = e.EMP_ID
+    inner join STAFF s on s.STAFF_ID = e.EMP_ID inner join JOB j on j.JOB_ID = s.JOB_ID;
+
+
+--2
+select P_FNAME, P_LNAME from HOSPITALPERSON h inner join VOLUNTEER v on h.P_ID = v.VOLUNTEER_ID
+    where v.VOLUNTEER_ID not in (select VOLUNTEER_ID from VOLUNTEER_SKILL);
+
+--3
+SELECT Patient.PATIENT_ID AS "Patient ID", HospitalPerson.P_FNAME AS "First Name", 
+HospitalPerson.P_LNAME AS "Last Name", HospitalPerson.P_BDAY AS "Birthdate", 
+Patient.REFERRAL_NAME AS "Referral Name", Volunteer.EXPERIENCE FROM Patient
+INNER JOIN HospitalPerson ON HospitalPerson.P_ID = Patient.PATIENT_ID
+INNER JOIN Volunteer ON Volunteer.VOLUNTEER_ID = Patient.PATIENT_ID
+WHERE VOLUNTEER.VOLUNTEER_ID = Patient.PATIENT_ID;
+
+
+--4
+SELECT Visit_Detail.PATIENT_ID AS "Patient ID", COUNT(Visit_Detail.PATIENT_ID) 
+AS "Number of Visits"
+FROM (Outpatient INNER JOIN HospitalPerson ON HospitalPerson.P_ID = Outpatient.OUTPATIENT_ID
+INNER JOIN Visit_Detail ON Visit_Detail.PATIENT_ID = OutPatient.OUTPATIENT_ID)
+GROUP BY Visit_Detail.PATIENT_ID
+
+Value need to add
+INSERT INTO Bed VALUES('b7811', '10', 'R13', 'cc42', 0);
+5.For each Skill list the total number of volunteers and technicians that achieve this skill.
+select sk.SKILL_Name, count (v_sk.SKILL_ID) as "Volunteer", count (t_sk.SKILL_ID)  as "Technician"
+from skill sk left join volunteer_skill v_sk on sk.SKILL_ID= v_sk.SKILL_ID
+left join tech_skill t_sk on sk.SKILL_ID = t_sk.SKILL_ID
+group by sk.SKILL_Name
+------------------------------------------
+6.Find all Care Centers where every bed is assigned to a Patient (i.e. no beds are available).
+select distinct cc.CC_NAME
+from care_center cc inner join bed b on cc.CC_ID = b.CC_ID
+except
+select distinct cc.CC_NAME
+from care_center cc inner join bed b on cc.CC_ID = b.CC_ID
+where b.OCCUPIED = (select distinct bed.OCCUPIED from Bed where OCCUPIED = 0)
+------------------------------------------
+7.List all Nurses who have an RN certificate but are not in charge of a Care Center.
+select HospitalPerson.p_fname, HospitalPerson.p_lname
+from HospitalPerson inner join Employees on HospitalPerson.P_ID = Employees.EMP_ID
+inner join Nurse on Employees.EMP_ID = Nurse.NURSE_ID
+where Nurse.NURSE_ID in (select Nurse.nurse_id from Nurse 
+inner join RN on Nurse.NURSE_ID = RN.RN_NURSE_ID
+where RN.incharge_status = 0)
+
+------------------------------------------
+8.List all Nurses that are in charge of a Care Center to which they are also assigned.
+select HospitalPerson.p_fname, HospitalPerson.p_lname
+from HospitalPerson inner join Employees on HospitalPerson.P_ID = Employees.EMP_ID
+inner join Nurse on Employees.EMP_ID = Nurse.NURSE_ID
+where Nurse.NURSE_ID in (select Nurse.nurse_id from Nurse 
+inner join RN on Nurse.NURSE_ID = RN.RN_NURSE_ID
+where RN.incharge_status = 1)
+HAVING COUNT(Visit_Detail.PATIENT_ID) = 1;
+
+-- 9. List all Laboratories, where all assigned technicians to that 
+-- laboratory achieve at least one skill. 
+select l.LAB_NAME from LABORATORY l inner join LAB_TECH lt on l.LAB_ID = lt.LAB_ID
+        inner join TECHNICIAN t on t.TECH_ID = lt.TECH_ID
+        inner join TECH_SKILL ts on ts.TECH_ID = t.TECH_ID
+group by l.LAB_NAME
+having count(ts.SKILL_ID) > 0;
+
+select TECH_ID, count(SKILL_ID) from TECH_SKILL
+group by TECH_ID
+having count(SKILL_ID) > 1;
+
+select l.LAB_NAME from LABORATORY l inner join LAB_TECH lt on l.LAB_ID = lt.LAB_ID
+        inner join TECHNICIAN t on t.TECH_ID = lt.TECH_ID
+        inner join TECH_SKILL ts on ts.TECH_ID = t.TECH_ID
+where ts.TECH_ID in 
+    (select TECH_ID from TECH_SKILL
+    group by TECH_ID
+    having count(SKILL_ID) > 0);
+
+--10. List all Resident patients that were admitted after the most current employee hire date.
+select P_FNAME, P_LNAME from HOSPITALPERSON h inner join PATIENT p on h.P_ID = p.PATIENT_ID
+        inner join RESIDENT r on r.RESIDENT_ID = p.PATIENT_ID
+where r.ADMITTED_DATE > (select max(HIRED_DATE) from EMPLOYEES);
+
+--11 Find all Patients who have been admitted within one week of their Contact Date.
+use cecs323m24;
+
+select h.P_FNAME, h.P_LNAME from cecs323m24.HospitalPerson h inner join cecs323m24.Patient p on h.P_ID = p.PATIENT_ID
+        inner join cecs323m24.Resident r on r.RESIDENT_ID = p.PATIENT_ID
+where r.ADMITTED_DATE between p.CONTACT_DATE and date_add(p.contact_date, INTERVAL 7 DAY);
+
+--12 Find all Outpatients who have not been 
+--visited by a Physician within one week of their Contact Date.
+select h.P_FNAME, h.P_LNAME from cecs323m24.HospitalPerson h inner join cecs323m24.Patient p on h.P_ID = p.PATIENT_ID
+        inner join cecs323m24.Outpatient o on o.Outpatient_id = p.PATIENT_ID
+        inner join cecs323m24.Visit_Detail v on v.patient_id = p.patient_id
+where o.Outpatient_id not in 
+    (select v.patient_id from cecs323m24.Visit_Detail v inner join cecs323m24.Patient p on v.patient_id = p.patient_id
+                inner join cecs323m24.Outpatient o on o.Outpatient_id = p.patient_id
+     where v.date_visit between p.contact_date and date_add(p.contact_date, INTERVAL 7 DAY));
+
+
+--13
+select hp.P_FNAME, count(vd.DATE_VISIT) as VisitCount from HospitalPerson hp
+inner join Physician p on hp.P_ID = p.PHYSICIAN_ID
+inner join Visit_detail vd on p.PHYSICIAN_ID = vd.PHYSICIAN_ID
+group by hp.P_FNAME
+having count(vd.DATE_VISIT) > 3;
+
+--14
+select h.P_FNAME, h.P_LNAME from HOSPITALPERSON h 
+    inner join PHYSICIAN p on h.P_ID= p.PHYSICIAN_ID
+    inner join VISIT_DETAIL v on v.PHYSICIAN_ID = p.PHYSICIAN_ID
+    inner join PATIENT pa on pa.PATIENT_ID = v.PATIENT_ID
+    inner join OUTPATIENT o on o.OUTPATIENT_ID = pa.PATIENT_ID
+where v.RESPONSIBILITY = true
+group by h.P_FNAME, h.P_LNAME
+having count(o.OUTPATIENT_ID) > 
+ (select count(r.RESIDENT_ID) from HOSPITALPERSON h 
+    inner join PHYSICIAN p on h.P_ID= p.PHYSICIAN_ID
+    inner join VISIT_DETAIL v on v.PHYSICIAN_ID = p.PHYSICIAN_ID
+    inner join PATIENT pa on pa.PATIENT_ID = v.PATIENT_ID
+    inner join RESIDENT r on r.RESIDENT_ID = pa.PATIENT_ID
+where v.RESPONSIBILITY = true
+group by h.P_FNAME, h.P_LNAME);
+
+
+--15
+select h.P_FNAME, h.P_LNAME from HOSPITALPERSON h 
+    inner join PHYSICIAN p on h.P_ID= p.PHYSICIAN_ID
+    inner join VISIT_DETAIL v on v.PHYSICIAN_ID = p.PHYSICIAN_ID
+    inner join PATIENT pa on pa.PATIENT_ID = v.PATIENT_ID
+    inner join OUTPATIENT o on o.OUTPATIENT_ID = pa.PATIENT_ID
+where v.RESPONSIBILITY = false
+
+-- 16
+
+--List all referrals that have reffered more than 2 patients.
+
+SELECT r.FamilyDoctocName, count(r.FamilyDoctocName) AS PatientsReferred from Referral r
+inner join Patient p on r.FamilyDoctocName = p.referral_name
+group by r.FamilyDoctocName
+having count(r.FamilyDoctocName) > 2;
+
+--List all hospital people that have more than two addresses.
+
+SELECT h.p_fname, h.p_lname,  count(a.location) AS AddressCount from HospitalPerson h
+inner join Address a on h.p_id = a.p_id
+group by h.p_fname,  h.p_lname
+having count(a.location) > 1;
+
+--List all hospital people that have more than one phone numbers.
+
+SELECT h.p_fname, h.p_lname,  count(p.phone_number) AS PhoneNumberCount from HospitalPerson h
+inner join Phonenumber p on h.p_id = p.p_id
+group by h.p_fname, h.p_lname
+having count(p.phone_number) > 1;
+
