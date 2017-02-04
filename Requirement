@@ -1,0 +1,102 @@
+You are designing a database for Mimi’s GetWell Hospital.
+As a large service organization, Mimi’s GetWell Hospital depends on a large number of persons for its continued success. There are four groups of people on whom the hospital is most dependent: employees, physicians, patients and volunteers. Of course some common attributes are shared by all of these persons such as birthdates and contact information. 
+Each of the four groups has at least one unique attribute of its own. Employees have a hire date and volunteers have a Skill, Physicians have a Specialty and Pager#, and patients have a contact date. 
+Additional personnel in the hospital community do not belong to one of these four groups (their numbers are relatively small). However, a particular person may belong to two (or more) of these groups at any given time (for example, Patient and Volunteer).
+Each patient has one (and only one) physician responsible for that patient. A given physician may not be responsible for a patient at a given time or may be responsible for one or more patients. Patients are divided into two groups: resident and outpatient. Each resident has an admitted date attribute. Each outpatient is scheduled for zero or more visits. The class visit has two attributes: Visit Date and Comments. Notice that an instance of visit cannot exist without an outpatient owner class.
+Employees are subdivided into three groups: nurse, staff, and technician. Only nurses have the attribute Certificate, which indicates the qualification. Only staff has the attribute job class, and only technicians have the attribute skill. Each nurse is assigned to one (and only one) care center. Examples of care centers are Maternity, Emergency, and Cardiology. Attributes of the care center are Name and Location. A care center may have one or more nurses assigned to it. Also for each care center, one nurse is appointed nurse in charge. The nurse in charge does not have to be assigned to that care center. A nurse cannot be appointed nurse in charge of a care center unless she or he has an RN certificate.
+Each technician is assigned to one or more laboratories. Attributes of laboratory include Name and Location. A laboratory must have at least one technician assigned to it and may have any number of technicians assigned.
+There may be no beds assigned to a care center, or a care center may have one or more beds (up to any number) assigned to it. The only attributes of bed are Bed# and Room#. Each resident patient must be assigned to a bed. A bed may or may not have a resident patient assigned to it at a given time. .
+Design
+You need to create five more business rules (other than the one explicitly described above) that are likely to be used in a hospital environment. Add your rules to the above requirements to be implemented. Your design must support the requirements of the enterprise stated above along with the five business rules you created.
+Model this enterprise using only the information supplied here. Do not model any processes not mentioned here such as payments, insurance, etc. unless they are part of your five business rules.
+Output
+Output of the database must support the following festures. You do not need to develop “pretty” printed or on-screen reports. You will run the views/queries in MySQL Query Browser in the lab.
+o	Use the Create View statement to create the following views:
+1.	Employees-Hired: This view returns the First Name, Last Name, and Date Hired of all Hospital Employees.
+2.	NursesInCharge: This view returns the name of the Nurse in Charge for each Care Center along with the phone number of the Nurse.
+3.	GoodTechnician: This view returns all the Technicians how have at least one skill.
+4.	CareCenter-Beds: This view returns the name for each Care Center along with the number of beds that are assigned to patients (occupied beds), the number of beds not assigned to patients (free beds), and the total number of beds.
+5.	OutPatientsNotVisited: This view returns all OutPatients who have not been visited by a Physician yet.
+o	Create the following Queries. Feel free to use any of the views that you created
+1.	For each Job Class list all the staff members belonging to this class.
+2.	Find all Volunteers who do not have any skills.
+3.	List all Patients who are also Volunteers at the Hospital.
+4.	Find each Outpatient who has been visited exactly once.
+5.	For each Skill list the total number of volunteers and technicians that achieve this skill.
+6.	Find all Care Centers where every bed is assigned to a Patient (i.e. no beds are available).
+7.	List all Nurses who have an RN certificate but are not in charge of a Care Center.
+8.	List all Nurses that are in charge of a Care Center to which they are also assigned.
+9.	List all Laboratories, where all assigned technicians to that laboratory achieve at least one skill.
+10.	List all Resident patients that were admitted after the most current employee hire date.
+11.	Find all Patients who have been admitted within one week of their Contact Date.
+12.	Find all Outpatients who have not been visited by a Physician within one week of their Contact Date.
+13.	List all Physicians who have made more than 3 visits on a single day.
+14.	List all Physicians that are responsible for more Outpatients than Resident Patients.
+15.	Find each Physician who visited an Outpatient for whom he or she was not responsible for.
+16.	Three more queries that involve the business rules that you added. Feel free to create more views for this.
+Teams
+This project will be done in teams of four people, whom you may self-select.
+Deliverables
+Your work will be done in two parts with one submission of each part for each team. See the class schedule for due dates.
+The first part, design, will consist of:
+o	Your five additional business rules
+o	Class diagram.
+o	English description of all classes and associations.
+o	If you did any denormalization in your design, please include a separate paragraph(s) stating what you did and why. If you did not do any denormalization, state that and why.
+The second part, implementation, will include:
+o	A revised design, based on feedback from the first part. This includes class diagrams and English descriptions of classes and associations.
+o	English description of all attributes.
+o	The relation scheme, based on the design.
+o	DDL used to create all the tables and the DML used to insert the data
+o	Queries to produce the reports, as described above along with sample output for each of these queries.
+You are designing a database for Mimi’s GetWell Hospital.
+As a large service organization, Mimi’s GetWell Hospital depends on a large number of persons for its continued success. There are four groups of people on whom the hospital is most dependent: employees, physicians, patients and volunteers. Of course some common attributes are shared by all of these persons such as birthdates and contact information. 
+Each of the four groups has at least one unique attribute of its own. Employees have a hire date and volunteers have a Skill, Physicians have a Specialty and Pager#, and patients have a contact date. 
+Additional personnel in the hospital community do not belong to one of these four groups (their numbers are relatively small). However, a particular person may belong to two (or more) of these groups at any given time (for example, Patient and Volunteer).
+Each patient has one (and only one) physician responsible for that patient. A given physician may not be responsible for a patient at a given time or may be responsible for one or more patients. Patients are divided into two groups: resident and outpatient. Each resident has an admitted date attribute. Each outpatient is scheduled for zero or more visits. The class visit has two attributes: Visit Date and Comments. Notice that an instance of visit cannot exist without an outpatient owner class.
+Employees are subdivided into three groups: nurse, staff, and technician. Only nurses have the attribute Certificate, which indicates the qualification. Only staff has the attribute job class, and only technicians have the attribute skill. Each nurse is assigned to one (and only one) care center. Examples of care centers are Maternity, Emergency, and Cardiology. Attributes of the care center are Name and Location. A care center may have one or more nurses assigned to it. Also for each care center, one nurse is appointed nurse in charge. The nurse in charge does not have to be assigned to that care center. A nurse cannot be appointed nurse in charge of a care center unless she or he has an RN certificate.
+Each technician is assigned to one or more laboratories. Attributes of laboratory include Name and Location. A laboratory must have at least one technician assigned to it and may have any number of technicians assigned.
+There may be no beds assigned to a care center, or a care center may have one or more beds (up to any number) assigned to it. The only attributes of bed are Bed# and Room#. Each resident patient must be assigned to a bed. A bed may or may not have a resident patient assigned to it at a given time. .
+Design
+You need to create five more business rules (other than the one explicitly described above) that are likely to be used in a hospital environment. Add your rules to the above requirements to be implemented. Your design must support the requirements of the enterprise stated above along with the five business rules you created.
+Model this enterprise using only the information supplied here. Do not model any processes not mentioned here such as payments, insurance, etc. unless they are part of your five business rules.
+Output
+Output of the database must support the following festures. You do not need to develop “pretty” printed or on-screen reports. You will run the views/queries in MySQL Query Browser in the lab.
+o	Use the Create View statement to create the following views:
+1.	Employees-Hired: This view returns the First Name, Last Name, and Date Hired of all Hospital Employees.
+2.	NursesInCharge: This view returns the name of the Nurse in Charge for each Care Center along with the phone number of the Nurse.
+3.	GoodTechnician: This view returns all the Technicians how have at least one skill.
+4.	CareCenter-Beds: This view returns the name for each Care Center along with the number of beds that are assigned to patients (occupied beds), the number of beds not assigned to patients (free beds), and the total number of beds.
+5.	OutPatientsNotVisited: This view returns all OutPatients who have not been visited by a Physician yet.
+o	Create the following Queries. Feel free to use any of the views that you created
+1.	For each Job Class list all the staff members belonging to this class.
+2.	Find all Volunteers who do not have any skills.
+3.	List all Patients who are also Volunteers at the Hospital.
+4.	Find each Outpatient who has been visited exactly once.
+5.	For each Skill list the total number of volunteers and technicians that achieve this skill.
+6.	Find all Care Centers where every bed is assigned to a Patient (i.e. no beds are available).
+7.	List all Nurses who have an RN certificate but are not in charge of a Care Center.
+8.	List all Nurses that are in charge of a Care Center to which they are also assigned.
+9.	List all Laboratories, where all assigned technicians to that laboratory achieve at least one skill.
+10.	List all Resident patients that were admitted after the most current employee hire date.
+11.	Find all Patients who have been admitted within one week of their Contact Date.
+12.	Find all Outpatients who have not been visited by a Physician within one week of their Contact Date.
+13.	List all Physicians who have made more than 3 visits on a single day.
+14.	List all Physicians that are responsible for more Outpatients than Resident Patients.
+15.	Find each Physician who visited an Outpatient for whom he or she was not responsible for.
+16.	Three more queries that involve the business rules that you added. Feel free to create more views for this.
+Teams
+This project will be done in teams of four people, whom you may self-select.
+Deliverables
+Your work will be done in two parts with one submission of each part for each team. See the class schedule for due dates.
+The first part, design, will consist of:
+o	Your five additional business rules
+o	Class diagram.
+o	English description of all classes and associations.
+o	If you did any denormalization in your design, please include a separate paragraph(s) stating what you did and why. If you did not do any denormalization, state that and why.
+The second part, implementation, will include:
+o	A revised design, based on feedback from the first part. This includes class diagrams and English descriptions of classes and associations.
+o	English description of all attributes.
+o	The relation scheme, based on the design.
+o	DDL used to create all the tables and the DML used to insert the data
+o	Queries to produce the reports, as described above along with sample output for each of these queries.
